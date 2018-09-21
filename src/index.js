@@ -14,16 +14,15 @@ module.exports = function makeExchange(currency) {
     P: 1
   };
 
-  let r = {};
+  let result = {};
 
-  for (let n of ["H", "Q", "D", "N", "P"]) {
-    let c = 0;
-    while (currency - m[n] >= 0) {
-      currency -= m[n];
-      c++;
-    }
-    if (c > 0) r[n] = c;
+  for (let n of ['H', 'Q', 'D', 'N', 'P']) {
+    let c = Math.floor(currency / m[n]);
+    currency = currency % m[n];
+    if (c > 0) result[n] = c;
   }
 
-  return r;
+  console.log(currency);
+
+  return result;
 };
