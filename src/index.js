@@ -16,13 +16,11 @@ module.exports = function makeExchange(currency) {
 
   let result = {};
 
-  for (let n of ['H', 'Q', 'D', 'N', 'P']) {
+  for (let n of Object.keys(m)) {
     let c = Math.floor(currency / m[n]);
     currency = currency % m[n];
     if (c > 0) result[n] = c;
   }
-
-  console.log(currency);
 
   return result;
 };
